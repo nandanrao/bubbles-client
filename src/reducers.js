@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 import _ from 'lodash';
 import { routerReducer } from 'react-router-redux'
 import {socket} from './socket';
-import { ROUND_END, DIVIDEND_PAYMENT, SOCKET_CONNECT, AUTH_LOGIN, AUTH_LOGOUT, USER_PROFILE, SUBMIT_ORDER } from './actions';
+import {store} from './store';
+import { getUser, NEW_GAMES, ROUND_END, DIVIDEND_PAYMENT, SOCKET_CONNECT, AUTH_LOGIN, AUTH_LOGOUT, USER_PROFILE, SUBMIT_ORDER } from './actions';
 
 function makeOrders(tuples) {
   return tuples.map(v => _.zipObject(['type', 'amount', 'timestamp', 'user', 'round'], v))
@@ -23,7 +24,7 @@ const initialOrders = makeOrders([
 function orders (state = initialOrders, action) {
   switch (action.type) {
   case SUBMIT_ORDER:
-    console.log(action.payload)
+    console.log('SUBMIT_ORDER', action.payload)
     return [...state, action.payload]
   default:
     return state;
@@ -59,7 +60,10 @@ function auth(state = {}, action) {
     if (socket.connected) socket.emit('authenticate', {token: action.auth.idToken});
     return action.auth;
   case SOCKET_CONNECT:
-    if (state.idToken) socket.emit('authenticate', { token: state.idToken });
+    if (state.idToken) {
+      socket.emit('authenticate', { token: state.idToken });
+      store.dispatch(getUser());
+    }
     return state;
   default:
     return state;
@@ -70,6 +74,9 @@ function user(state = {}, action) {
   switch (action.type) {
   case USER_PROFILE:
     return action.profile
+  case NEW_GAMES:
+    store.dispatch(getUser());
+    return state;
   default:
     return state;
   }

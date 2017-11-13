@@ -57,8 +57,8 @@ class Play extends Component {
     }
 
     // make this better, with a diff screen for waiting for players from waiting to start
-    // renderPlay();
-    return activeGame(this.props.user) ? renderPlay() : <div> waiting for game to start </div>
+    return renderPlay();
+    // return activeGame(this.props.user) ? renderPlay() : <div> waiting for game to start </div>
   }
 }
 

@@ -4,8 +4,9 @@ import Play from './play/Play';
 import logo from './logo.svg';
 
 import history from './history';
-import { Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
+
 import './App.css';
 import auth from './auth/Auth';
 import Consent from './consent/Consent';
@@ -18,14 +19,19 @@ import {getUser} from './actions';
 // Connect auth0
 
 
-function renderCallback(props) {
-  auth.handleAuthentication(props)
+function renderCallback(a) {
+  if (auth.isAuthenticated(a)) {
+    return <Redirect to={{pathname: '/instructions'}} />
+  }
+
+  auth.handleAuthentication()
     .then(() => history.replace('/instructions'))
     .catch(err => {
       console.error('HANDLE AUTH ERROR: ', err)
       history.replace('/error')
     });
-  return <Callback {...props} />
+
+  return <Callback />
 }
 
 // continuous polling for new user info (games!?)
@@ -53,7 +59,7 @@ class App extends Component {
                 <Instructions {...props} /> :
                   <Consent {...props} login={auth.login} />;
               }}/>
-            <Route exact path="/callback" render={renderCallback}/>
+            <Route exact path="/callback" render={ p => renderCallback(this.props.auth)}/>
             <Route exact path="/instructions" component={Instructions} />
             <Route exact path="/play" component={Play} />
             <Route exact path="/consent" render={props => {
