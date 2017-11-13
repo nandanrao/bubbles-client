@@ -1,0 +1,20 @@
+.orders {
+  display: flex;
+}
+.orderBook {
+  width: 60%;
+  margin: 2em auto;
+}
+
+.orderBook ul {
+  width: 50%;
+  display: inline-block;
+}
+
+.orderBook .bids {
+
+}
+
+.orderBook .asks {
+
+}
