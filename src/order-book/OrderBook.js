@@ -4,15 +4,12 @@ import List, {
   ListSubheader,
   ListItemText,
 } from 'material-ui/List';
-
+import {formatMoney} from '../utils/utils';
 import Divider from 'material-ui/Divider';
 import SubmitOrder from './Submit';
 import _ from 'lodash';
 import './OrderBook.css';
 
-function formatMoney(num) {
-  return '$' + (parseFloat(num*100)/100).toFixed(2)
-}
 
 class OrderBook extends Component {
 

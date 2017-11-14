@@ -1,5 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import { SERVER_URL } from './constants';
+import { activeGame } from './utils/utils';
+
+
 export const SUBMIT_ORDER = 'SUBMIT_ORDER';
 export const DIVIDEND_PAYMENT = 'DIVIDEND_PAYMENT';
 export const USER_PROFILE = 'USER_PROFILE';
@@ -11,6 +14,7 @@ export const NEW_GAMES = 'NEW_GAMES';
 export const SOCKET_CONNECT = 'connect';
 
 
+
 // CLOCK_TICK ???????
 // clock state...
 // map state to props should change round...
@@ -19,7 +23,6 @@ export const SOCKET_CONNECT = 'connect';
 
 export function submitOrder(order) {
   return (dispatch, state, socket) => {
-    console.log('state in submitOrder: ', state())
     socket.emit(SUBMIT_ORDER, order)
     dispatch({
       type: SUBMIT_ORDER,
@@ -30,7 +33,7 @@ export function submitOrder(order) {
 
 export function getUser(token) {
   return (dispatch, state, socket) => {
-    const token = token || state().auth.idToken;
+    token = token || state().auth.idToken;
     return fetch(`${SERVER_URL}/user` ,
                  { headers: { 'Authorization': `Bearer ${token}`}})
       .then(res => res.json())
@@ -42,6 +45,26 @@ export function getUser(token) {
         } else {
           profile.games.forEach(g => socket.emit('JOIN_GAME', g._id))
         }
+      })
+  }
+}
+
+export function getDividends() {
+  return (dispatch, state, socket) => {
+    const token = state().auth.idToken;
+    const game = activeGame(state().user);
+
+    // if no active game, clear div state
+    if (!game) {
+      return dispatch({ type: DIVIDEND_PAYMENT, dividends: [] })
+    }
+
+    // otherwise get dividends for game
+    fetch(`${SERVER_URL}/dividends/${game._id}`,
+          { headers: { 'Authorization': `Bearer ${token}`}})
+      .then(res => res.json())
+      .then(divs => {
+        dispatch({ type: DIVIDEND_PAYMENT, dividends: divs })
       })
   }
 }

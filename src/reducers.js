@@ -6,37 +6,11 @@ import {socket} from './socket';
 import {store} from './store';
 import { getUser, NEW_GAMES, ROUND_END, DIVIDEND_PAYMENT, SOCKET_CONNECT, AUTH_LOGIN, AUTH_LOGOUT, USER_PROFILE, SUBMIT_ORDER } from './actions';
 
-function makeOrders(tuples) {
-  return tuples.map(v => _.zipObject(['type', 'amount', 'timestamp', 'user', 'round'], v))
-};
-
-const initialOrders = makeOrders([
-  ['bid', 0.90, 170, 'foo', 1],
-  ['bid', 1.50, 170, 'foo', 1],
-  ['ask', 1.00, 160, 'bar', 0],
-  ['bid', 1.20, 120, 'foo', 0],
-  ['ask', 1.10, 120, 'bar', 0],
-  ['ask', 1.20, 100, 'bar', 0]
-]);
-
-
-
-function orders (state = initialOrders, action) {
+function orders (state = [], action) {
   switch (action.type) {
+    // game change, empty orders to only those in new game?
   case SUBMIT_ORDER:
-    console.log('SUBMIT_ORDER', action.payload)
     return [...state, action.payload]
-  default:
-    return state;
-  }
-};
-
-function round (state = 0, action) {
-  switch (action.type) {
-  case ROUND_END:
-    // if state == 10, end game
-    // else:
-    return state + 1;
   default:
     return state;
   }
@@ -45,8 +19,8 @@ function round (state = 0, action) {
 function dividends(state = [], action) {
   switch (action.type) {
   case DIVIDEND_PAYMENT:
-    console.log('DIVIDEND: ', action.payload)
-    return [...state, action.payload]; // if action.payload is just the number
+    console.log('DIVIDEND: ', action.dividends)
+    return action.dividends;
   default:
     return state;
   }
@@ -82,4 +56,13 @@ function user(state = {}, action) {
   }
 }
 
-export default { orders, round, dividends, user, auth, router: routerReducer };
+function clock(state = Date.now(), action) {
+  switch (action.type) {
+  case 'TICK':
+    return Date.now()
+  default:
+    return state;
+  }
+}
+
+export default { orders, clock, dividends, user, auth, router: routerReducer };

@@ -47,6 +47,7 @@ export function getPortfolioChange(pair, user) {
     .reduce(sumChanges, [0,0])
 };
 
+// TODO: filter by game???
 export function getOpenOrders(orders, round) {
   const ordersThisRound = orders.filter(o => o.round === round);
   const cleared = _.flatten(getCleared(ordersThisRound))
