@@ -2,7 +2,6 @@
   "name": "bubbles-client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://nandanrao.github.io/trading-experiment",
   "dependencies": {
     "auth0-js": "^8.11.2",
     "auth0-lock": "^10.24.0",
