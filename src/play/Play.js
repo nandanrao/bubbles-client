@@ -46,7 +46,7 @@ class Play extends Component {
               user={this.props.user._id}
               orders={getOpenOrders(this.props.orders, this.props.round)}
               />
-              <Portfolio cash={cash} assets={assets}/>
+              <Portfolio round={this.props.round} game={this.props.game} cash={cash} assets={assets}/>
               <Timeline user={this.props.user} orders={this.props.orders} round={this.props.round} game={this.props.game} dividends={this.props.dividends} />
               </div>)
     }

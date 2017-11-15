@@ -1,0 +1,32 @@
+.portfolio {
+  width: 250px;
+  margin: 0 auto;
+}
+
+.portfolio span:first{
+  float: left
+}
+
+.portfolio .content:last-child{
+  padding: 12px 20px;
+}
+
+.portfolio .content div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: .5em auto .5em auto;
+}
+
+
+.portfolio .content div:first-child {
+  margin: 0 auto .5em auto;
+}
+
+.portfolio .content div:last-child {
+  margin: .5em auto 0 auto;
+}
+
+.portfolio span:first{
+  float: left;
+}

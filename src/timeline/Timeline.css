@@ -3,7 +3,12 @@
 }
 
 .review {
-  margin-top: 2em;
+  width: 90%;
+  margin: 2em auto;
+}
+
+.review h2 {
+  padding: 1em 0;
 }
 
 .review.treated table {

@@ -22,7 +22,7 @@ export const store = createStore(
   applyMiddleware(
     thunkMiddleware.withExtraArgument(socket),
     routerMiddleware(history),
-    createLogger()
+    createLogger({predicate: (getState, action) => action.type !== 'TICK'})
   )
 );
 

@@ -18,3 +18,22 @@
   width: 50%;
   margin: 1em auto;
 }
+
+.nextgame h2 {
+  margin: 1.5em;
+}
+
+.nextgame .rewards {
+  width: 50%;
+  margin: auto auto;
+  text-align: left;
+}
+
+.nextgame .rewards p {
+  margin: 1em auto;
+}
+
+
+.nextgame .rewards em {
+  font-weight: 900;
+}

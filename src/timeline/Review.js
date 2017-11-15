@@ -7,6 +7,8 @@ import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Ta
 import _ from 'lodash';
 import { getRankOfUser, getPortfolioValues, getChanges, getCurrentPrice, getTotalPortfolio } from '../order-book/OrderCalcs';
 import { initialPortfolio } from '../constants';
+import Typography from 'material-ui/Typography';
+import Paper from 'material-ui/Paper';
 
 function computeRound(round) {
   if (round === null) return 'PRACTICE'
@@ -42,8 +44,10 @@ class Timeline extends Component {
 
     const treated = () => {
       return (
-        <div className="review treated">
-          <h2> Past Portfolio Performance: </h2>
+        <Paper className="review treated">
+          <Typography type="headline" component="h2">
+            Past Portfolio Performance:
+          </Typography>
           <Table className="review-table">
             <TableHead>
               <TableRow>
@@ -60,7 +64,7 @@ class Timeline extends Component {
                 {gains}
               </TableBody>
           </Table>
-        </div>
+        </Paper>
       )
     }
 
@@ -79,8 +83,10 @@ class Timeline extends Component {
 
     const control = () => {
       return (
-        <div className="review control">
-          <h2> Past Dividends: </h2>
+        <Paper className="review control">
+          <Typography type="headline" component="h2">
+            Past Dividends:
+          </Typography>
           <Table className="review-table">
             <TableHead>
               <TableRow>
@@ -94,7 +100,7 @@ class Timeline extends Component {
                 {returns}
               </TableBody>
           </Table>
-        </div>
+        </Paper>
       )
     }
 

@@ -9,9 +9,10 @@ class Consent extends Component {
       <div className="consent">
         <h2>INFORMED CONSENT</h2>
 
-      <h3>Name of the university: UPF</h3>
+        <p> Welcome! Please give you consent to participate in this projct: </p>
+        <p>Name of the university: UPF</p>
 
-      <h3>I HEREBY CONFIRM THAT: </h3>
+        <p>I HEREBY CONFIRM THAT: </p>
         <p>I give my consent to participate in the current project.</p>
 
         <Button raised onClick={ () => history.replace('/instructions')}> AGREE </Button>

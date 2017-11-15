@@ -14,9 +14,8 @@ class Wrapup extends Component {
     const [assets, cash] = this.props.portfolio;
 
     const summary = this.props.game.treated ?
-          <div><p> Take a look at your performance each round, and another game will begin shortly if this was your first! </p></div> :
-          <div><p> You finished with <span>{ '$' + cash.toFixed(2) }</span>! Get ready for another game if this was your first!</p></div>
-
+          <div className="summary"><p> Take a look at your performance each round. Another game will begin shortly if this was your first! </p></div> :
+          <div className="summary"><p> You finished with <span>{ '$' + cash.toFixed(2) } </span>! Get ready for another game if this was your first!</p></div>
 
     return (
         <div className="wrapup">
