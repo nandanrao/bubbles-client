@@ -10,6 +10,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import './App.css';
 import auth from './auth/Auth';
 import Consent from './consent/Consent';
+import Error from './Error';
 import Callback from './Callback';
 import Instructions from './instructions/Instructions.js'
 import connectSocket from './socket';
@@ -67,6 +68,7 @@ class App extends Component {
                             <Redirect to="/consent" />
                         }} />
                       <Route exact path="/consent" component={Consent}/>
+                      <Route exact path="/error" component={Error}/>
           </div>
         </ConnectedRouter>
       </div>
