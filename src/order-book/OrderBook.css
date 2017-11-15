@@ -6,6 +6,26 @@
   margin: 2em auto;
 }
 
+.orderBook input {
+  width: 10em;
+}
+.orderBook button {
+  margin-left: 1em;
+}
+
+.order-text.bid h3:hover::after{
+  float: right;
+  content: "sell";
+  font-size: .7em;
+}
+
+.order-text.ask h3:hover::after{
+  float: right;
+  content: "buy";
+  /* padding-left: 1em; */
+  font-size: .7em;
+}
+
 .orderBook ul {
   width: 50%;
   display: inline-block;

@@ -1,3 +1,18 @@
 .timeline {
   margin-top: 2em;
 }
+
+.review {
+  margin-top: 2em;
+}
+
+.review.treated table {
+  width: 80%;
+  margin: 1em auto;
+}
+
+
+.review.control table {
+  width: 50%;
+  margin: 1em auto;
+}

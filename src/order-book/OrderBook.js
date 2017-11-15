@@ -9,7 +9,7 @@ import Divider from 'material-ui/Divider';
 import SubmitOrder from './Submit';
 import _ from 'lodash';
 import './OrderBook.css';
-
+import NumberFormat from 'react-number-format';
 
 class OrderBook extends Component {
 
@@ -17,12 +17,20 @@ class OrderBook extends Component {
     const marketOrder = order => [order.type === 'bid' ? 'ask' : 'bid', order.amount];
 
     const makeOrder = (order,key,arr) => {
-      return <div key={key}>
-        <ListItem button onClick={() => this.props.submit(...marketOrder(order))}>
-        <ListItemText primary={formatMoney(order.amount)} />
-        </ListItem>
-        <Divider />
-        </div>
+      return (key === 0 ?
+              <div key={key}>
+              <ListItem button onClick={() => this.props.submit(...marketOrder(order))}>
+              <ListItemText className={'order-text ' + order.type} primary={formatMoney(order.amount)} />
+              </ListItem>
+              <Divider />
+              </div> :
+              <div key={key}>
+              <ListItem >
+              <ListItemText primary={formatMoney(order.amount)} />
+              </ListItem>
+              <Divider />
+              </div>
+)
     }
 
     const bids = _(this.props.orders)
@@ -41,10 +49,10 @@ class OrderBook extends Component {
     return (
       <div className="orderBook">
         <div className="orders">
-          <List className="bids" subheader={<ListSubheader> Bids </ListSubheader>} >
+          <List className="bids" subheader={<ListSubheader> Buying </ListSubheader>} >
             {bids}
           </List>
-          <List className="asks" subheader={<ListSubheader> Asks </ListSubheader>}>
+          <List className="asks" subheader={<ListSubheader> Selling </ListSubheader>}>
             {asks}
           </List>
         </div>

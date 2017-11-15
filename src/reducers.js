@@ -4,11 +4,12 @@ import _ from 'lodash';
 import { routerReducer } from 'react-router-redux'
 import {socket} from './socket';
 import {store} from './store';
-import { getUser, NEW_GAMES, ROUND_END, DIVIDEND_PAYMENT, SOCKET_CONNECT, AUTH_LOGIN, AUTH_LOGOUT, USER_PROFILE, SUBMIT_ORDER } from './actions';
+import { getOrders, getUser, NEW_GAMES, ROUND_END, DIVIDEND_PAYMENT, SOCKET_CONNECT, AUTH_LOGIN, AUTH_LOGOUT, USER_PROFILE, SUBMIT_ORDER, GOT_ORDERS } from './actions';
 
 function orders (state = [], action) {
   switch (action.type) {
-    // game change, empty orders to only those in new game?
+  case GOT_ORDERS:
+    return action.orders
   case SUBMIT_ORDER:
     return [...state, action.payload]
   default:
@@ -47,6 +48,7 @@ function auth(state = {}, action) {
 function user(state = {}, action) {
   switch (action.type) {
   case USER_PROFILE:
+    store.dispatch(getOrders());
     return action.profile
   case NEW_GAMES:
     store.dispatch(getUser());

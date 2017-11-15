@@ -1,4 +1,63 @@
 .instructions button {
   margin-top: 2em;
+}
 
+.instructions {
+  margin: 2em auto;
+}
+
+.instructions h1 {
+  font-size: 1.5em;
+}
+
+.instructions p {
+  width: 50%;
+  margin: auto auto;
+  margin-top: 2em;
+  text-align: left;
+}
+
+.layout-instructions {
+  width: 50%;
+  margin: auto;
+}
+
+.layout-instructions h2{
+  margin: 2em auto;
+}
+.layout-instructions .splits{
+  display: flex;
+}
+.layout-instructions h3 {
+  font-weight: 900;
+  margin: 1em auto;
+}
+
+.layout-instructions .left p,
+.layout-instructions .right p {
+  width: 100%;
+  margin: 1em auto;
+}
+
+.layout-instructions .bottom p {
+  text-align: center;
+  width: 80%;
+  margin: 1em auto;
+}
+
+.layout-instructions .bottom {
+  display: block;
+  width: 100%;
+  margin: 1em auto 4em auto;
+}
+
+.layout-instructions .left,
+.layout-instructions .right{
+  passing: 3em;
+  width: 50%;
+  display: inline-block;
+}
+
+.layout-instructions .right{
+  float: right;
 }

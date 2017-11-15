@@ -1,6 +1,6 @@
 import auth0 from 'auth0-js';
 import history from '../history';
-import { SERVER_URL } from '../constants';
+import { CLIENT_URL, SERVER_URL } from '../constants';
 import fetch from 'isomorphic-fetch'
 import {socket} from '../socket';
 import {store} from '../store';
@@ -10,7 +10,7 @@ class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'nandan.auth0.com',
     clientID: 'cEf1w7ao4r0gqM4889Dmfki0kB48a4ah',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: `${CLIENT_URL}/callback`,
     audience: 'https://nandan.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid profile email'
@@ -53,8 +53,8 @@ class Auth {
 
   isAuthenticated(auth) {
     if (!auth || !auth.idTokenPayload) return false;
-    const expiresAt = (auth.idTokenPayload.iat + auth.expiresIn) * 1000;
-    return new Date().getTime() < expiresAt;
+    const expiresAt = (auth.idTokenPayload.exp) * 1000;
+    return Date.now() < expiresAt;
   }
 }
 

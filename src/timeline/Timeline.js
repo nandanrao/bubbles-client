@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { getRound, activeGame, timeLeftInRound} from '../utils/utils';
 import {store} from '../store';
+import Review from './Review';
 import './Timeline.css';
 
 function computeRound(round) {
@@ -11,17 +12,12 @@ function computeRound(round) {
 class Timeline extends Component {
 
   render() {
-    const divs = this.props.dividends.map((d,i) => {
-      return <li key={i}>  <span> {d}</span> </li>
-    })
+
     return (
       <div className="timeline">
         <h2> Current Round: <span>{computeRound(this.props.round)} / {this.props.game.conf.rounds}</span></h2>
         <h2> Time Left in Round: <span>{timeLeftInRound(this.props.game)}</span></h2>
-        <h2> Past Dividends: </h2>
-        <ul className="dividends">
-          {divs}
-        </ul>
+        <Review user={this.props.user} orders={this.props.orders} game={this.props.game} round={this.props.round} dividends={this.props.dividends} />
       </div>
     )
   }

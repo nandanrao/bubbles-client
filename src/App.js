@@ -16,16 +16,17 @@ import connectSocket from './socket';
 import {store} from './store';
 import {getUser} from './actions';
 
-// Connect auth0
 
 
+// window.location is hack to deal with weird bugzz
 function renderCallback(a) {
   if (auth.isAuthenticated(a)) {
-    return <Redirect to={{pathname: '/instructions'}} />
+    // return <Redirect to={{pathname: '/play'}} />
+    window.location.assign('./play')
   }
 
   auth.handleAuthentication()
-    .then(() => history.replace('/instructions'))
+    .then(() => window.location.assign('./play'))
     .catch(err => {
       console.error('HANDLE AUTH ERROR: ', err)
       history.replace('/error')
@@ -34,40 +35,40 @@ function renderCallback(a) {
   return <Callback />
 }
 
-// continuous polling for new user info (games!?)
-// setInterval(() => {
-//   const token = auth.getIdToken();
-//   if (token) store.dispatch(getUser(token));
-// }, 1000)
-
 
 class App extends Component {
 
   render() {
 
+    const getLogout = () => {
+      return auth.isAuthenticated(this.props.auth) ? (<button onClick={auth.logout}>logout</button>) : null;
+    }
+
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to the Market</h1>
-          <button onClick={auth.logout}>logout</button>
+          <h1 className="App-title">Financial Trading Simulation</h1>
+          { getLogout() }
         </header>
         <ConnectedRouter history={history}>
           <div>
             <Route exact path="/" render={props => {
                 return auth.isAuthenticated(this.props.auth) ?
-                <Instructions {...props} /> :
-                  <Consent {...props} login={auth.login} />;
-              }}/>
-            <Route exact path="/callback" render={ p => renderCallback(this.props.auth)}/>
-            <Route exact path="/instructions" component={Instructions} />
-            <Route exact path="/play" component={Play} />
-            <Route exact path="/consent" render={props => {
-                return <Consent {...props} login={auth.login}/>
-              }}/>
+                <Redirect to="/play"/> :
+                  <Redirect to="/consent" />
+                  }}/>
+                  <Route exact path="/callback" render={ p => renderCallback(this.props.auth)}/>
+                    <Route exact path="/instructions" render={props => {
+                        return <Instructions {...props} login={auth.login}/>
+                      }}/>
+                      <Route exact path="/play" render={props => {
+                          return auth.isAuthenticated(this.props.auth) ?
+                          <Play/> :
+                            <Redirect to="/consent" />
+                        }} />
+                      <Route exact path="/consent" component={Consent}/>
           </div>
         </ConnectedRouter>
-
       </div>
     );
   }

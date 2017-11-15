@@ -1,0 +1,20 @@
+.nextgame h1{
+  font-size: 2em;
+  margin: 1em auto;
+}
+
+.nextgame h2{
+  font-size: 1.5em;
+  margin: .5em auto;
+}
+
+.waiting h1 {
+  margin: 1em auto;
+  font-size: 2em;
+}
+
+.waiting p {
+  text-align: left;
+  width: 50%;
+  margin: 1em auto;
+}
