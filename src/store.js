@@ -21,8 +21,8 @@ export const store = createStore(
   reducer,
   applyMiddleware(
     thunkMiddleware.withExtraArgument(socket),
-    routerMiddleware(history),
-    createLogger({predicate: (getState, action) => action.type !== 'TICK'})
+    routerMiddleware(history)
+    // createLogger({predicate: (getState, action) => action.type !== 'TICK'})
   )
 );
 

@@ -8,7 +8,7 @@ export default class NextGame extends Component {
       return (
         <div className="rewards control">
         <p> You will play two rounds of the trading game (each with 8 periods). You will be rewarded based on how much cash you have at the end of each round: the more cash at the end of a round, the more points you will recieve:</p>
-          <p> 1 point for every $1 </p>
+          <p> 1 point for every $1. </p>
           <p> Maximum of 50 points per round. </p>
           <p> Your total reward will be a sum of your rewards at the end of each round (maximum of 100 points). </p>
         </div>
