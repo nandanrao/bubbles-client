@@ -51,7 +51,6 @@ class Play extends Component {
               </div>)
     }
 
-    // make this better, with a diff screen for waiting for players from waiting to start
     if (!this.props.game) {
       return (<Waiting />)
     }

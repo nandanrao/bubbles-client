@@ -5,12 +5,13 @@ export default class NextGame extends Component {
   render() {
 
     const control = () => {
+      return (
         <div className="rewards control">
-
-
+        <p> You will play two rounds of the trading game (each with 8 periods). You will be rewarded based on how much cash you have in your portfolio at the end of each round: the more cash at the end of a round, the more points you will recieve, 1 point for every $1, up to a maximum of 50 points per round. Your total reward will be a sum of your rewards at the end of each round (maximum of 100 points). </p>
         </div>
+      )
     }
-        // { this.props.game.treated ? treated() : control() }
+
     const treated = () => {
       return(
           <div className="rewards treated">
@@ -33,7 +34,7 @@ export default class NextGame extends Component {
 
         <h2> Please take note of how you will be rewarded for your participation:  </h2>
 
-        { treated() }
+      { this.props.game.treated ? treated() : control() }
       </div>
     );
   }
