@@ -20,7 +20,6 @@ function orders (state = [], action) {
 function dividends(state = [], action) {
   switch (action.type) {
   case DIVIDEND_PAYMENT:
-    console.log('DIVIDEND: ', action.dividends)
     return action.dividends;
   default:
     return state;

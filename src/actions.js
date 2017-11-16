@@ -63,7 +63,6 @@ export function getOrders() {
                  { headers: { 'Authorization': `Bearer ${token}`}})
       .then(res => res.json())
       .then(orders => {
-        console.log('got orders', orders)
         dispatch({ type: GOT_ORDERS, orders })
       })
   }
