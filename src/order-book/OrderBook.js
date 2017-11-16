@@ -49,10 +49,10 @@ class OrderBook extends Component {
     return (
       <div className="orderBook">
         <div className="orders">
-          <List className="bids" subheader={<ListSubheader> Buying </ListSubheader>} >
+          <List className="bids" subheader={<ListSubheader> Buy Offers </ListSubheader>} >
             {bids}
           </List>
-          <List className="asks" subheader={<ListSubheader> Selling </ListSubheader>}>
+          <List className="asks" subheader={<ListSubheader> Sell Offers </Listsubheader>}>
             {asks}
           </List>
         </div>
