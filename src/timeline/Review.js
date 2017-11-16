@@ -32,10 +32,10 @@ class Timeline extends Component {
             return (
               <TableRow key={i}>
                 <TableCell numeric>{i+1}</TableCell>
-                <TableCell numeric>{d}</TableCell>
+                <TableCell numeric>{'$'+d}</TableCell>
                 <TableCell numeric>{p[0]}</TableCell>
                 <TableCell numeric>{(p[0]*d).toFixed(2)}</TableCell>
-                <TableCell numeric>{v.toFixed(2)}</TableCell>
+                <TableCell numeric>{'$'+v.toFixed(2)}</TableCell>
                 <TableCell numeric>{(c*100).toFixed(2) + '%'}</TableCell>
                 <TableCell numeric>{rank}</TableCell>
               </TableRow>
@@ -74,9 +74,9 @@ class Timeline extends Component {
       return (
         <TableRow key={i}>
           <TableCell numeric>{i+1}</TableCell>
-          <TableCell numeric>{d}</TableCell>
+          <TableCell numeric>{'$'+d}</TableCell>
           <TableCell numeric>{p[0]}</TableCell>
-          <TableCell numeric>{(p[0]*d).toFixed(2)}</TableCell>
+          <TableCell numeric>{'$'+(p[0]*d).toFixed(2)}</TableCell>
         </TableRow>
       )
     })

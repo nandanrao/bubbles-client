@@ -52,7 +52,7 @@ class OrderBook extends Component {
           <List className="bids" subheader={<ListSubheader> Buy Offers </ListSubheader>} >
             {bids}
           </List>
-          <List className="asks" subheader={<ListSubheader> Sell Offers </Listsubheader>}>
+          <List className="asks" subheader={<ListSubheader> Sell Offers </ListSubheader>}>
             {asks}
           </List>
         </div>
