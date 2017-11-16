@@ -114,6 +114,7 @@ html {
   font-size: 1.5em;
   font-weight: 900;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 h2 {

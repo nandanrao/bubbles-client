@@ -48,7 +48,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Financial Trading Simulation</h1>
+          <h1 className="App-title" onClick={() => history.replace('/')}>Financial Trading Simulation</h1>
           { getLogout() }
         </header>
         <ConnectedRouter history={history}>
